@@ -1,0 +1,38 @@
+[
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "Web Developer",
+      "age": 25,
+      "city": 1
+    },
+    {
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "role": "Designer",
+      "age": 28,
+      "city": 2
+    },
+    {
+      "name": "Mike Johnson",
+      "email": "mike.johnson@example.com",
+      "role": "Software Engineer",
+      "age": 30,
+      "city": 3
+    },
+    {
+      "name": "Sarah Brown",
+      "email": "sarah.brown@example.com",
+      "role": "Data Analyst",
+      "age": 24,
+      "city": 4
+    },
+    {
+      "name": "David Lee",
+      "email": "david.lee@example.com",
+      "role": "Project Manager",
+      "age": 32,
+      "city": 5
+    }
+  ]
+  
