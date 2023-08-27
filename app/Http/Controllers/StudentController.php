@@ -13,7 +13,7 @@ class StudentController extends Controller
             ->orderBy('id')
             ->orderBy('age')
             ->orderBy('city')
-            ->get();
+            ->paginate(3, ['*'], 'search');
         return view("students", compact("students"));
     }
     public function student(string $id)
@@ -89,7 +89,6 @@ class StudentController extends Controller
 
         if ($updateStudent) {
             return redirect()->route('students');
-
         } else {
             echo '<div > Data NOt Updated</div>';
         }
