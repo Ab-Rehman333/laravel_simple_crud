@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,13 +10,21 @@ class StudentController extends Controller
 {
     public function students()
     {
-        $students = DB::table("students")
-            ->orderBy('id')
-            ->orderBy('age')
-            ->orderBy('city')
-            ->paginate(3, ['*'], 'search');
-        return view("students", compact("students"));
+        try {
+            $students = DB::table("students")
+                ->join('infos', 'students.city', '=', 'infos.id')
+                ->select('students.*', 'infos.city as city_name')
+                ->orderBy('students.id')
+                ->orderBy('students.age')
+                ->orderBy('infos.city')
+                ->paginate(3, ['*'], 'search');
+            // return $students;
+            return view("students", compact("students"));
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
+
     public function student(string $id)
     {
         // for selecting all the single user info 
@@ -56,20 +65,36 @@ class StudentController extends Controller
 
     public function addStudent(Request $req)
     {
-        $addStudent = DB::table("students")->insert([
-            'name' => $req->name,
-            'email' => $req->email,
-            'role' => $req->role,
-            'age' => $req->age,
-            'city' => $req->city
+        // Validate the incoming request data
+        $validation = $req->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required',
+            'age' => 'required|integer',
+            'city' => 'required',
         ]);
 
-        if ($addStudent) {
-            return redirect()->route('students');
+        // If validation passes, insert the data
+        if ($validation) {
+            try {
+                DB::table('students')->insert([
+                    'name' => $req->name,
+                    'email' => $req->email,
+                    'role' => $req->role,
+                    'age' => $req->age,
+                    'city' => $req->city,
+                ]);
+
+                return redirect()->route('students')->with('success', 'Student added successfully');
+            } catch (Exception $e) {
+                return redirect()->back()->withInput()->with('error', 'Failed to add student');
+            }
         } else {
-            echo "Student not added";
+            // Validation failed, redirect back to the form with validation errors
+            return redirect()->back()->withInput()->withErrors($validation);
         }
     }
+
     public function updatePage(string $id)
     {
 

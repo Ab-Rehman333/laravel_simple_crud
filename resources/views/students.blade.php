@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="css/crud.css">
-    {{-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> --}}
 </head>
 
 <body>
@@ -36,20 +35,21 @@
                 </thead>
                 <tbody>
                     @foreach ($students as $id => $student)
-                        <tr>
-                            <th scope="row">{{ $student->id }}</th>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->email }}</td>
-                            <td>{{ $student->role }}</td>
-                            <td>{{ $student->age }}</td>
-                            <td>{{ $student->city }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('student', $student->id) }}">Read More</a>
-                            </td>
-                            <td><a class="btn btn-success" href="{{ route('updatePage', $student->id) }}">Update</a>
-                            </td>
-                            <td><a class="btn btn-danger" href="{{ route('student.delete', $student->id) }}">Delete</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <th scope="row">{{ $student->id }}</th>
+                        <td>{{ $student->name }}</td>
+                        <td>{{ $student->email }}</td>
+                        <td>{{ $student->role }}</td>
+                        <td>{{ $student->age }}</td>
+                        <td>{{ $student->city_name }}</td>
+
+                        <td><a class="btn btn-primary" href="{{ route('student', $student->id) }}">Read More</a>
+                        </td>
+                        <td><a class="btn btn-success" href="{{ route('updatePage', $student->id) }}">Update</a>
+                        </td>
+                        <td><a class="btn btn-danger" href="{{ route('student.delete', $student->id) }}">Delete</a>
+                        </td>
+                    </tr>
                     @endforeach
 
                 </tbody>

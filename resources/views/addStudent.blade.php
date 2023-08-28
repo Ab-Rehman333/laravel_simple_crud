@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Students</title>
+    <title>Add Students Info</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
@@ -18,28 +18,39 @@
                 @csrf
                 <div class="col-md-4">
                     <label for="validationCustom01" class="form-label">Name</label>
-                    <input name="name" type="text" class="form-control" required>
-
+                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" required>
+                    @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-4">
                     <label for="validationCustom02" class="form-label">Email</label>
-                    <input name="email" type="text" class="form-control" required>
-
+                    <input name="email" type="text" class="form-control @error('email') is-invalid @enderror" required>
+                    @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-4">
                     <label for="validationCustom03" class="form-label">Role</label>
-                    <input name="role" type="text" class="form-control" required>
-
+                    <input name="role" type="text" class="form-control @error('role') is-invalid @enderror" required>
+                    @error('role')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="col-md-6">
                     <label for="validationCustom03" class="form-label">Age</label>
-                    <input name="age" type="number" class="form-control" required>
-
+                    <input name="age" type="number" class="form-control @error('age') is-invalid @enderror" required>
+                    @error('age')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="validationCustom03" class="form-label">City</label>
-                    <input name="city" type="number" class="form-control" required>
+                    <input name="city" type="number" class="form-control @error('city') is-invalid @enderror" required>
+                    @error('city')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-12">
                     <button class="btn btn-primary" type="submit">Add User</button>
